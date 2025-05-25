@@ -1,4 +1,4 @@
-# Digital Signature System 🔐
+# 🔐 Digital Signature System - Autentica
 
 A simple digital signature system using Python's `turtle` module, `sympy` for prime number checks, and custom modular exponentiation.
 
