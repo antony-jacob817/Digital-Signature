@@ -19,8 +19,8 @@ Try the app online: [Run on Replit](https://replit.com/@antonyjacob817/Autentica
 ## Installation 🛠️
 ```sh
 # Clone the repository
-git clone https://github.com/yourusername/digital-signature-system.git
-cd digital-signature-system
+git clone https://github.com/antony-jacob817/Digital-Signature.git
+cd Digital-Signature
 
 # Install dependencies
 pip install sympy
@@ -29,7 +29,7 @@ pip install sympy
 ## Usage ▶️
 Run the script using:
 ```sh
-python digital_signature.py
+python key_generation.py
 ```
 
 ## Dependencies 📦
