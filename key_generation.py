@@ -1,34 +1,11 @@
 import turtle
 import random
-import math
 from sympy import mod_inverse, isprime
+from modular_exponentiation import modular_exponentiation
+from euler_totient import euler_totient
 
 public_key = private_key = None
 message = signature = None
-
-
-def euler_totient(n):
-    result = n
-    for p in range(2, int(math.sqrt(n)) + 1):
-        if n % p == 0:
-            while n % p == 0:
-                n //= p
-            result -= result // p
-    if n > 1:
-        result -= result // n
-    return result
-
-
-def modular_exponentiation(base, exponent, modulus):
-    result = 1
-    base = base % modulus
-    while exponent > 0:
-        if exponent % 2 == 1:
-            result = (result * base) % modulus
-        base = (base * base) % modulus
-        exponent //= 2
-    return result
-
 
 def gcd(a, b):
     while b:
