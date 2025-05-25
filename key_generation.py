@@ -1,21 +1,46 @@
 import turtle
 import random
+import math
 from sympy import mod_inverse, isprime
-from modular_exponentiation import modular_exponentiation
-from euler_totient import euler_totient
 
 public_key = private_key = None
 message = signature = None
+
+
+def euler_totient(n):
+    result = n
+    for p in range(2, int(math.sqrt(n)) + 1):
+        if n % p == 0:
+            while n % p == 0:
+                n //= p
+            result -= result // p
+    if n > 1:
+        result -= result // n
+    return result
+
+
+def modular_exponentiation(base, exponent, modulus):
+    result = 1
+    base = base % modulus
+    while exponent > 0:
+        if exponent % 2 == 1:
+            result = (result * base) % modulus
+        base = (base * base) % modulus
+        exponent //= 2
+    return result
+
 
 def gcd(a, b):
     while b:
         a, b = b, a % b
     return a
 
+
 def generate_keys():
     global public_key, private_key
     p = int(turtle.textinput("Key Generation", "Enter a prime number (p):"))
-    q = int(turtle.textinput("Key Generation", "Enter another prime number (q):"))
+    q = int(
+        turtle.textinput("Key Generation", "Enter another prime number (q):"))
     if not (isprime(p) and isprime(q)):
         status_display("❌ Both numbers must be prime!", "red", 12)
         return
@@ -27,7 +52,10 @@ def generate_keys():
     d = mod_inverse(e, phi_n)
     public_key = (e, n)
     private_key = (d, n)
-    status_display(f"✅ Keys Generated!\nPublic Key: {public_key}\nPrivate Key: (Hidden)", "green", 12)
+    status_display(
+        f"✅ Keys Generated!\nPublic Key: {public_key}\nPrivate Key: (Hidden)",
+        "green", 12)
+
 
 def sign_message():
     global signature, message
@@ -42,12 +70,16 @@ def sign_message():
     signature = modular_exponentiation(message_hash, d, n)
     status_display(f"✍️ Message Signed!\nSignature: {signature}", "yellow", 12)
 
+
 def verify_signature():
     if not public_key or not signature or not message:
-        status_display("❌ Missing data! Generate keys & sign a message first.", "red", 12)
+        status_display("❌ Missing data! Generate keys & sign a message first.",
+                       "red", 12)
         return
-    received_message = turtle.textinput("Verify Signature", "Enter received message:")
-    received_signature = int(turtle.textinput("Verify Signature", "Enter received signature:"))
+    received_message = turtle.textinput("Verify Signature",
+                                        "Enter received message:")
+    received_signature = int(
+        turtle.textinput("Verify Signature", "Enter received signature:"))
     e, n = public_key
     message_hash = hash(received_message) % n
     decrypted_hash = modular_exponentiation(received_signature, e, n)
@@ -56,11 +88,13 @@ def verify_signature():
     else:
         status_display("❌ Signature INVALID!", "red", 12)
 
+
 def status_display(message, color, font_size):
     status.clear()
     status.color(color)
     status.goto(0, -170)
     status.write(message, align="center", font=("Arial", font_size, "bold"))
+
 
 def create_button(text, x, y, action):
     button = turtle.Turtle()
@@ -78,8 +112,9 @@ def create_button(text, x, y, action):
     text_turtle.goto(x, y - 10)
     text_turtle.write(text, align="center", font=("Arial", 14, "bold"))
 
+
 screen = turtle.Screen()
-screen.title("🔐 Digital Signature System")
+screen.title("Autentica")
 screen.bgcolor("#1A1A1A")
 screen.setup(width=800, height=600)
 
@@ -88,7 +123,7 @@ header.hideturtle()
 header.penup()
 header.color("#3498DB")
 header.goto(0, 220)
-header.write("Digital Signature System", align="center", font=("Arial", 28, "bold"))
+header.write("-> Autentica <-", align="center", font=("Arial", 28, "bold"))
 
 subtitle = turtle.Turtle()
 subtitle.hideturtle()
@@ -102,7 +137,9 @@ welcome.hideturtle()
 welcome.penup()
 welcome.color("white")
 welcome.goto(0, 120)
-welcome.write("🔐 Welcome! Click a button to start.", align="center", font=("Arial", 14, "bold"))
+welcome.write("Welcome! Click a button to start.",
+              align="center",
+              font=("Arial", 14, "bold"))
 
 status = turtle.Turtle()
 status.hideturtle()
@@ -119,6 +156,8 @@ footer.hideturtle()
 footer.penup()
 footer.color("#95A5A6")
 footer.goto(0, -250)
-footer.write("© 2025 Digital Signature System v2.0", align="center", font=("Arial", 10))
+footer.write("Autentica © 2025 Digital Signature System",
+             align="center",
+             font=("Arial", 10))
 
 turtle.done()
