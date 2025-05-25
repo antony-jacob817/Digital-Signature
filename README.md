@@ -17,18 +17,21 @@ Try the app online: [Run on Replit](https://replit.com/@antonyjacob817/Autentica
 3. **Verify Signature**: Input the message and signature to validate authenticity.
 
 ## Installation 🛠️
-```sh
-# Clone the repository
+
+1. Clone the repository
+```bash
 git clone https://github.com/antony-jacob817/Digital-Signature.git
 cd Digital-Signature
+```
 
-# Install dependencies
+2. Install dependencies
+```bash
 pip install sympy
 ```
 
-## Usage ▶️
-Run the script using:
-```sh
+3.  Usage ▶️<br>
+    Run the script using:
+```bash
 python key_generation.py
 ```
 
@@ -42,9 +45,9 @@ python key_generation.py
 ## 📸 Preview
 ![Screenshot 2025-05-25 192004](https://github.com/user-attachments/assets/73e8613f-dc9e-40f9-8ca8-29ec849fec88)
 
+## 📄 License
 
-## License 📜
-MIT License. Feel free to modify and improve!
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
