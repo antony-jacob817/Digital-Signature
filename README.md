@@ -39,6 +39,10 @@ python digital_signature.py
 - `modular_exponentiation.py`
 - `euler_totient.py`
 
+## 📸 Preview
+![Screenshot 2025-05-25 192004](https://github.com/user-attachments/assets/73e8613f-dc9e-40f9-8ca8-29ec849fec88)
+
+
 ## License 📜
 MIT License. Feel free to modify and improve!
 
